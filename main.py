@@ -5,16 +5,15 @@ from vanna.remote import VannaDefault
 def init():
     merchant_id = "3e2b6"
 
-    api_key = "2f8e680c8f324b95885327d83d1fe9c4"# Your API key from https://vanna.ai/account/profile 
+    api_key = "2f8e680c8f324b95885327d83d1fe9c4"
 
-    vanna_model_name = "grab-mex-ai" # Your model name from https://vanna.ai/account/profile 
+    vanna_model_name = "grab-mex-ai" # https://vanna.ai/account/profile 
     vn = VannaDefault(model=vanna_model_name, api_key=api_key)
 
     vn.connect_to_mssql(odbc_conn_str='DRIVER={ODBC Driver 17 for SQL Server};SERVER=LOCALHOST;DATABASE=GrabFoodDB;Trusted_Connection=Yes;TrustServerCertificate=Yes;')
 
     return merchant_id, vn
 
-# Dummy model response function (replace with your real model logic)
 def get_model_response(prompt, merchant_id, vn):    
     prompt = "My merchant id is " + merchant_id + ". " + prompt
     answer = vn.ask(question=prompt, visualize=False, print_results=False, allow_llm_to_see_data=True)
@@ -23,14 +22,11 @@ def get_model_response(prompt, merchant_id, vn):
     return answer[0], answer[1]
 
 def gui():
-    # Streamlit UI
     st.set_page_config(page_title="AI Assistant", layout="centered")
     st.title("Grab MEX AI Assistant")
 
-    # Text input from user
     user_input = st.text_input("Ask me anything:")
 
-    # Show response only when there is input
     if user_input:
         merchant_id, vn = init()
         sql, response = get_model_response(user_input, merchant_id, vn)
