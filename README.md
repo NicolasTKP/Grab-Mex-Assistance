@@ -1,7 +1,3 @@
-## Hardcorded Prototype Demo Video
-
-https://youtu.be/oD329RmjU_M
-
 ## Figma Link
 
 https://www.figma.com/design/oVvJ5JpvyeqgwVvDiAQL0m/Grab-Premium?node-id=178-2&t=fuDzPxWVvjWhkqyK-1 
